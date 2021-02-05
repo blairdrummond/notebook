@@ -1591,10 +1591,9 @@ class NotebookApp(JupyterApp):
 
     @observe('authenticate_prometheus')
     def _update_authenticate_prometheus(self, change):
+        self.log.info(_("What is in change %s") % change['new'] )
         self.authenticate_prometheus = change['new']
-        if self.authenticate_prometheus:
-            self.log.info(_("Authentication of /metrics is ON."))
-        else:
+        if self.authenticate_prometheus is False:
             self.log.info(_("Authentication of /metrics is OFF."))
 
 
